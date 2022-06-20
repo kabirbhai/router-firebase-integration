@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Signup from "./components/Signup/Signup";
 import Post from "./components/Post/Post";
 import Review from "./components/Review/Review";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -14,7 +15,14 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/home"} element={<Home />} />
-        <Route path={"/post"} element={<Post />} />
+        <Route
+          path={"/post"}
+          element={
+            <RequireAuth>
+              <Post />
+            </RequireAuth>
+          }
+        />
         <Route path={"/review"} element={<Review />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/signup"} element={<Signup />} />

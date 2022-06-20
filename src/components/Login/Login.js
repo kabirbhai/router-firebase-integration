@@ -1,18 +1,26 @@
 import React from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   if (loading) {
     return <span>Loading</span>;
+  }
+
+  if (user) {
+    navigate(from, { replace: true });
   }
   return (
     <div>
       <h1 className="text-center text-primary my-4">Please login now</h1>
 
       <div className="w-50 mx-auto">
-        <form>
+        <form className="w-50 mx-auto">
           <div className="mb-3">
             <input
               type="email"
@@ -31,8 +39,11 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-outline-primary d-block w-100 my-2"
+          >
+            Login
           </button>
         </form>
         <button

@@ -8,26 +8,30 @@ import "./Header.css";
 const Header = () => {
   const [user] = useAuthState(auth);
   return (
-    <header>
+    <header className="bg-light py-4 shadow">
       <nav style={{ fontSize: "23px" }}>
-        <Link className="mx-2" to={"/home"}>
+        <Link className=" mx-3 border p-2 rounded" to={"/home"}>
           Home
         </Link>
-        <Link className="mx-2" to={"/post"}>
+        <Link className=" mx-3 border p-2 rounded" to={"/post"}>
           Post
         </Link>
-        <Link className="mx-2" to={"/reviews"}>
+        <Link className=" mx-3 border p-2 rounded" to={"/review"}>
           Reviews
         </Link>
-        <Link className="mx-2" to={"/signup"}>
+        <Link className=" mx-3 border p-2 rounded" to={"/signup"}>
           signup
         </Link>
         {user?.uid ? (
-          <Link onClick={() => signOut(auth)} className="mx-2" to={"/login"}>
+          <Link
+            onClick={() => signOut(auth)}
+            className=" mx-3 border p-2 rounded"
+            to={"/login"}
+          >
             Log out
           </Link>
         ) : (
-          <Link className="mx-2" to={"/login"}>
+          <Link className=" mx-3 border p-2 rounded" to={"/login"}>
             Login
           </Link>
         )}
